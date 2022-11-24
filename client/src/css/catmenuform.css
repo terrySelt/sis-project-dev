@@ -1,0 +1,89 @@
+.container-form-catmenu2{
+    background-color: white;
+    padding: 20px;
+    width: 280px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.15);
+}
+
+.header-form-catmenu{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    
+}
+
+.header-form-catmenu h3{
+    font-size: var(--md);
+    margin-top: 0;
+    color: black;
+}
+
+.div-link-catmenu{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.form-catmenu-regresar{
+    font-size: var(--sm);
+    color: #94a3b8;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+.form-catmenu{
+    display: flex;
+    flex-direction: column;
+}
+
+.label-form-catmenu{
+    font-size: var(--sm);
+    font-weight: 600;
+    color: var(--letter);
+    margin-bottom: 5px;
+}
+
+.form-catmenu input{
+    height: 30px;
+    margin-bottom: 12px;
+    background: var(--text--input--field);
+    border: 0;
+    border-radius: 4px;
+}
+
+
+.errormessage-catmenu{
+    font-size: var(--sm);
+    color: rgb(220 38 38);
+    margin-top: 0;
+}
+
+
+.btn-guardar-catmenu{
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: var(--sm);
+    cursor: pointer;
+    background-color: var(--orange);
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+}
+
+.btn-guardar-catmenu-icon {
+    animation: btn-guardar-catmenu-icon  1s linear infinite;
+}
+
+@keyframes btn-guardar-catmenu-icon{
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}    

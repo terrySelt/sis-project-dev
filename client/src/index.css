@@ -1,0 +1,34 @@
+:root {
+  /*Paleta de colores de Restaurant*/
+  --red:#ea1601;
+  --orange: #ff6f00;
+  --yellow: #ffff00;
+  --mustard: #facc15;
+  --background: #f3f4f6;
+  --text--input--field: #f5f3f4;
+  --letter: #a8a29e;
+
+
+  --sm: 14px;
+  --md: 16px;
+  --lg: 18px;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Quicksand', sans-serif;
+  background: var(--background);
+  color: var(--letter)
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+}

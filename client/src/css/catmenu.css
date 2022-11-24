@@ -1,0 +1,97 @@
+.container2{
+    box-sizing: border-box;
+    background-color: white;
+    width: 280px;
+    height: auto;font-size: var(--sm);
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.15);
+}
+
+.new-catmenu-div{
+    width: 280px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.new-catmenu{
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: var(--sm);
+    cursor: pointer;
+    background-color: var(--orange);
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.15);
+    text-decoration: none;
+}
+
+.container2 h3{
+    color: black;
+}
+
+.catmenutable{
+    background-color: var(--text--input--field);
+    border-radius: 4px;
+    margin: 5px;
+    padding: 3px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.caticons{
+    display: flex;
+}
+
+.caticons button{
+    background-color: var(--orange);
+    border: 0;
+    margin: 2px;
+    border-radius: 4px;
+    color: white;
+    display: flex;
+}
+
+.caticons button svg{
+    font-size: var(--lg);
+}
+
+.caticons button:nth-child(2){
+    background-color: var(--red);
+}
+
+/*notification*/
+.btn-notification-catmenu{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.btn-notification-catmenu button{
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: var(--sm);
+    font-weight: 500;
+    background: red;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.btn-notification-catmenu button:nth-child(2){
+    border: 1px solid #999;
+    color: #999;
+    background: #fff;
+}
+
+.parrafo-rotification-catmenu{
+    font-size: var(--sm);
+}

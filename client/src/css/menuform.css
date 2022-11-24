@@ -1,0 +1,115 @@
+.container-form-menuform2{
+    background-color: white;
+    padding: 20px;
+    width: 280px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    box-shadow: 0 35px 80px rgba(172, 140, 140, 0.15);
+}
+
+.header-form-menuform{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    
+}
+
+.header-form-menuform h3{
+    font-size: var(--md);
+    margin-top: 0;
+    color: black;
+}
+
+.div-link-menuform{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.form-menuform-regresar{
+    font-size: var(--sm);
+    color: #94a3b8;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+.form-menuform{
+    display: flex;
+    flex-direction: column;
+}
+
+.label-form-menuform{
+    font-size: var(--sm);
+    font-weight: 600;
+    color: var(--letter);
+    margin-bottom: 5px;
+}
+
+.input-menufrom{
+    height: 30px;
+    margin-bottom: 12px;
+    background: var(--text--input--field);
+    border: 0;
+    border-radius: 4px;
+    color: var(--letter);
+}
+
+.select-form-menuform{
+    height: 35px;
+    background: var(--text--input--field);
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+
+.errormessage-menuform{
+    font-size: var(--sm);
+    color: rgb(220 38 38);
+    margin-top: 0;
+}
+
+.select-form-menuform{
+    height: 35px;
+    background: var(--text--input--field);
+    border-radius: 4px;
+    margin-bottom: 12px;
+    border: 0;
+    color: var(--letter);
+}
+
+.input-image-menuform{
+    box-sizing: border-box;
+    color: var(--letter);
+    padding: 4px 3px;
+    height: 30px;
+    margin-bottom: 12px;
+    background: var(--text--input--field);
+    border: 0;
+    border-radius: 4px;
+}
+
+.btn-guardar-menuform{
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: var(--sm);
+    cursor: pointer;
+    background-color: var(--orange);
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+}
+
+.btn-guardar-menuform-icon {
+    animation: btn-guardar-menuform-icon  1s linear infinite;
+}
+
+@keyframes btn-guardar-menuform-icon{
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}    
