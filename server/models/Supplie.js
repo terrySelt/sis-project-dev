@@ -1,12 +1,6 @@
 import mongoose from "mongoose";
 
 const supplieSchema = new mongoose.Schema({
-    registration_date: {
-        type : Date,
-        unique: true,
-        required : true,
-        trim : true,
-    },
     product: {
         type : String,
         required : true,
@@ -24,10 +18,9 @@ const supplieSchema = new mongoose.Schema({
     },
     total: {
         type : Number,
-        required : true,
         trim : true,
     },
-    supplier: {
+    name_supplier: {
         type : String,
         trim : true,
     },
@@ -39,6 +32,8 @@ const supplieSchema = new mongoose.Schema({
         type : String,
         trim : true,
     },
+},{
+    timestamps: true
 })
 
-export default mongoose.model('Supplie', menuSchema)
+export default mongoose.model('Supplie', supplieSchema)

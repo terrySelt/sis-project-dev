@@ -12,7 +12,8 @@ try {
     const values = await Promise.all([
         new Role({name: 'admin'}).save(),
         new Role({name: 'user'}).save(),
-        new Role({name: 'customer'}).save()
+        new Role({name: 'chef'}).save(),
+        new Role({name: 'customer'}).save(),
     ])
 
 } catch (error) {
@@ -29,6 +30,8 @@ export const createUser = async () => {
         const admin = dataadmin.id
         const datauser = await Role.findOne({name: 'user'})
         const user = datauser.id
+        const datachef = await Role.findOne({name: 'chef'})
+        const chef = datachef.id
         const datacustomer = await Role.findOne({name: 'customer'})
         const customer = datacustomer.id
 
@@ -38,11 +41,12 @@ export const createUser = async () => {
     
         const values = await Promise.all([
             new User({
+                ci: '7578870',
                 name: 'admin',
                 email: 'terryselt@gmail.com',
                 password: await User.encriptPassword(PASSWORD),
-                roles: [admin, user, customer]
-            }).save(),
+                roles: [admin, user, chef, customer]
+            }).save()
         ])
     } catch (error) {
         console.error(error)

@@ -4,12 +4,12 @@ const router = Router()
 
 router.get('/categorys', getCategorys)
 
-router.post('/category', createCategory)
+router.post('/categorys', createCategory)
 
-router.put('/category/:id', updateCategory)
+router.put('/categorys/:id', updateCategory)
 
-router.delete('/category/:id', deleteCategory)
+router.delete('/categorys/:id', deleteCategory)
 
-router.get('/category/:id', getCategory)
+router.get('/categorys/:id', getCategory)
 
 export default router

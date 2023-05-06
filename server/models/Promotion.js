@@ -15,9 +15,9 @@ const promotionSchema = new mongoose.Schema({
         type : String,
         trim : true,
     },
-    image: {
-        url: String,
-        public_id: String
+    message: {
+        type : String,
+        trim : true,
     },
     Activation_date: {
         type : Date,
@@ -27,10 +27,8 @@ const promotionSchema = new mongoose.Schema({
         type : Date,
         trim : true,
     },
-    registration_date: {
-        type : Date,
-        trim : true,
-    },
+},{
+    timestamps: true
 })
 
-export default mongoose.model('Promotion', menuSchema)
+export default mongoose.model('Promotion', promotionSchema)

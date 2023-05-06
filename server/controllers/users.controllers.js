@@ -6,8 +6,7 @@ import fs from "fs-extra"
 
 export const getUsers = async (req, res) => {
     try {
-        //const users = await User.find().populate("roles").select("-password -recoveryToken")
-        const users = await User.find().populate("roles")
+        const users = await User.find().populate("roles").select("-password -recoveryToken")
         res.send(users)
     } catch (error) {
         return res.status(500).json({message: error.message})
@@ -33,13 +32,19 @@ export const createUser = async (req, res) => {
         if(roles==="admin"){
             const roleadmin = await Role.findOne({name: "admin"})
             const roleuser = await Role.findOne({name: "user"})
+            const rolechef = await Role.findOne({name: "chef"})
             const rolecustomer = await Role.findOne({name: "customer"})
-            newUser.roles = [roleadmin._id, roleuser._id, rolecustomer._id] 
+            newUser.roles = [roleadmin._id, roleuser._id, rolechef._id, rolecustomer._id] 
         } 
         if(roles==='user'){
             const roleuser = await Role.findOne({name: "user"})
             const rolecustomer = await Role.findOne({name: "customer"})
             newUser.roles = [roleuser._id, rolecustomer._id]
+        }
+        if(roles==='chef'){
+            const rolechef = await Role.findOne({name: "chef"})
+            const rolecustomer = await Role.findOne({name: "customer"})
+            newUser.roles = [rolechef._id, rolecustomer._id]
         } 
         if(roles==='customer'){
             const rolecustomer = await Role.findOne({name: "customer"})
@@ -47,8 +52,8 @@ export const createUser = async (req, res) => {
         } 
         
         await newUser.save()
-/*      delete newUser._doc.password
-        delete newUser._doc.recoveryToken */
+        delete newUser._doc.password
+        delete newUser._doc.recoveryToken 
         return res.json(newUser)
     } catch (error) {
         return res.status(500).json({message: error.message})
@@ -57,17 +62,17 @@ export const createUser = async (req, res) => {
 
 export const updateUser = async (req, res) => {
      try {
-        
         const user = await User.findById(req.params.id)//user por el id
 
         const roleadmin = await Role.findOne({name: "admin"})
         const roleuser = await Role.findOne({name: "user"})
+        const rolechef = await Role.findOne({name: "chef"})
         const rolecustomer = await Role.findOne({name: "customer"})
 
         let image
 
         if(req.files?.image){
-            if(user.name.public_id!=="prototipo/1_pqf1ax.png"){
+            if(user.name.public_id!=="sis-project/usuario1_v6gx5a.jpg"){
                 await deleteImage(user.image.public_id)
             }
             const result = await uploadImage(req.files.image.tempFilePath)
@@ -87,23 +92,25 @@ export const updateUser = async (req, res) => {
             oldpassword: req.body.oldpassword,
             newpassword: req.body.newpassword,
             confirmpassword: req.body.confirmpassword
-        }   
-
-
-        const matchPassword = await User.comparePassword(body.oldpassword, user.password)
-        if(matchPassword){
-            if(body.newpassword === body.confirmpassword){
-                const encript = await User.encriptPassword(body.newpassword)
-                const updatedPassword = await User.findByIdAndUpdate(user._id, {password: encript}, { new: true})
-                if(!updatedPassword) return res.status(500).json({message: 'the passwords are not the same'})
-            }else{
-                    return res.status(500).json({message: 'the passwords are not the same'})    
+        } 
+        
+        if(body.oldpassword){
+            const matchPassword = await User.comparePassword(body.oldpassword, user.password)
+            if(matchPassword){
+                if(body.newpassword === body.confirmpassword){
+                    const encript = await User.encriptPassword(body.newpassword)
+                    const updatedPassword = await User.findByIdAndUpdate(user._id, {password: encript}, { new: true})
+                    if(!updatedPassword) return res.status(500).json({message: 'the passwords are not the same'})
                 }
+            }else{
+                return res.status(500).json({message: 'the passwords are not the same'})    
+            } 
         }
 
         const admin = user.roles.find(item => item.toString() === roleadmin._id.toString())
         const userrole = user.roles.find(item => item.toString() === roleuser._id.toString())
-        const customer = user.roles.find(item => item.toString() === rolecustomer._id.toString())        
+        const chefrole = user.roles.find(item => item.toString() === rolechef._id.toString())
+        const customer = user.roles.find(item => item.toString() === rolecustomer._id.toString())  
         
         if(req.body.roles === 'admin'){
             if(!admin){
@@ -111,6 +118,9 @@ export const updateUser = async (req, res) => {
             }
             if(!userrole){
                 const updatedroleuser = await User.findByIdAndUpdate(req.params.id, {$push: {"roles": roleuser._id}}, { new: true})
+            }
+            if(!chefrole){
+                const updatedrolechef = await User.findByIdAndUpdate(req.params.id, {$push: {"roles": rolechef._id}}, { new: true})
             }
             if(!customer){
                 const updatedrolecustomer = await User.findByIdAndUpdate(req.params.id, {$push: {"roles": rolecustomer._id}}, { new: true})
@@ -124,6 +134,17 @@ export const updateUser = async (req, res) => {
                 const updatedrolecustomer = await User.findByIdAndUpdate(req.params.id, {$push: {"roles": rolecustomer._id}}, { new: true})
             }
             const updatedrole = await User.findByIdAndUpdate(req.params.id, {$pull: {"roles": admin}}, { new: true})
+            const updaterolechef = await User.findByIdAndUpdate(req.params.id, {$pull: {"roles": chefrole}}, { new: true})
+
+        } else if(req.body.roles === 'chef'){
+            if(!chefrole){
+                const updatedroleuser = await User.findByIdAndUpdate(req.params.id, {$push: {"roles": rolechef._id}}, { new: true})
+            }
+            if(!customer){
+                const updatedrolecustomer = await User.findByIdAndUpdate(req.params.id, {$push: {"roles": rolecustomer._id}}, { new: true})
+            }
+            const updatedrole = await User.findByIdAndUpdate(req.params.id, {$pull: {"roles": admin}}, { new: true})
+            const updaterolechef = await User.findByIdAndUpdate(req.params.id, {$pull: {"roles": userrole}}, { new: true})
 
         } else if(req.body.roles === 'customer'){
             if(!customer){
@@ -131,11 +152,12 @@ export const updateUser = async (req, res) => {
             }
             const updatedroleadmin = await User.findByIdAndUpdate(req.params.id, {$pull: {"roles": admin}}, { new: true})
             const updatedroleuser = await User.findByIdAndUpdate(req.params.id, {$pull: {"roles": userrole}}, { new: true})
+            const updatedrolechef = await User.findByIdAndUpdate(req.params.id, {$pull: {"roles": chefrole}}, { new: true})
         } 
 
         const updatedUser = await User.findByIdAndUpdate(req.params.id, body, { new: true})
-        //delete updatedUser._doc.password
-        //elete updatedUser._doc.recoveryToken
+        delete updatedUser._doc.password
+        delete updatedUser._doc.recoveryToken
         return res.send(updatedUser)
 
     } catch (error) {
@@ -161,12 +183,10 @@ export const deleteUser = async (req, res) => {
 
 export const getUser = async (req, res) => {
     try {
-        //const user = await User.findById(req.params.id).populate("roles").select("-password -recoveryToken")
-        const user = await User.findById(req.params.id).populate("roles")
+        const user = await User.findById(req.params.id).populate("roles").select("-password -recoveryToken")
         if(!user) return res.sendStatus(404)
         return res.json(user)
     } catch (error) {
         return res.status(500).json({message: error.message})
     } 
-    
 }

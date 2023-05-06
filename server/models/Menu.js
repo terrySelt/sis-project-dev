@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose"
 
 const menuSchema = new mongoose.Schema({
     name: {
@@ -8,8 +8,14 @@ const menuSchema = new mongoose.Schema({
         trim : true,
     },
     image: {
-        url: String,
-        public_id: String
+        url: {
+            type: String,
+            default:'https://res.cloudinary.com/dvgn925ka/image/upload/v1683167076/sis-project/h1_y2cbgm.jpg'
+        },
+        public_id: {
+            type: String,
+            default: "sis-project/h1_y2cbgm.jpg"
+        },
     },
     short_description: {
         type : String,
@@ -21,9 +27,8 @@ const menuSchema = new mongoose.Schema({
         trim : true,
     },
     category : {
-        type : String,
-        required : true,
-        trim: true
+        ref: "Category",
+        type: Schema.Types.ObjectId
     },
     discount: {
         type : Number,
