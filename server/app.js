@@ -10,6 +10,7 @@ import orderRoutes from './routes/orders.routes.js'
 import orderItemRoutes from './routes/ordersItems.routes.js'
 import supplieRoutes from './routes/supplies.routes.js'
 import promotionRoutes from './routes/promotions.routes.js'
+import couponRoutes from './routes/coupons.routes.js'
 
 import { initialcreate } from './libs/initialSetup.js'
 
@@ -34,5 +35,6 @@ app.use(orderRoutes)
 app.use(orderItemRoutes)
 app.use(supplieRoutes)
 app.use(promotionRoutes)
+app.use(couponRoutes)
 
 export default app

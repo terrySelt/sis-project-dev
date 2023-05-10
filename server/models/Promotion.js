@@ -1,31 +1,49 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const promotionSchema = new mongoose.Schema({
     name: {
         type : String,
-        required : true,
-        trim : true,
+        trim : true
     },
-    apply: {
-        type : String,
-        required : true,
-        trim : true,
+    apply_user:[{
+        ref: "User",
+        type: Schema.Types.ObjectId
+    }], 
+    apply_menu: [{
+        ref: "Menu",
+        type: Schema.Types.ObjectId
+    },],
+    limit: {
+        type : Number,
+        trim : true
     },
-    value: {
-        type : String,
-        trim : true,
+    value_coupon: {
+        ref: "Coupon",
+        type: Schema.Types.ObjectId
+    },
+    value_desPM: {
+        type : Number,
+        trim : true
+    },
+    value_desPP: {
+        type : Number,
+        trim : true
     },
     message: {
         type : String,
-        trim : true,
+        trim : true
+    },
+    state: {
+        type: Boolean,
+        default: false
     },
     Activation_date: {
         type : Date,
-        trim : true,
+        trim : true
     },
     end_date: {
         type : Date,
-        trim : true,
+        trim : true
     },
 },{
     timestamps: true

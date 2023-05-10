@@ -37,6 +37,9 @@ export const getOrders = async (req, res) => {
 export const createOrder = async (req, res) => {
     try {
         const {customer_id, responsible_id, cash, paid_status, delivered_status} = req.body
+
+        let total
+        let change
         
         const newOrder = new Order({customer_id, responsible_id, total, cash, change, paid_status, delivered_status})
         await newOrder.save()

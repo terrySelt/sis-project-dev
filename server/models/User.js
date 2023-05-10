@@ -36,9 +36,9 @@ const userSchema = new mongoose.Schema({
         type : String,
         trim : true,
     },
-    age: {
+    birthdate: {
         type : Date,
-        trim : true,
+        trim : true
     },
     accumulated_points: {
         type : Number,
@@ -57,8 +57,7 @@ const userSchema = new mongoose.Schema({
     },
     coupons: [{
         ref: "Coupon",
-        type: Schema.Types.ObjectId,
-        amount : Number,
+        type: Schema.Types.ObjectId
     }],
     roles: [{
         ref: "Role",

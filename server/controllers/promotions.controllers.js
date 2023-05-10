@@ -11,9 +11,9 @@ export const getPromotions = async (req, res) => {
 
 export const createPromotions = async (req, res) => {
     try {
-        const {name, apply, value, message, Activation_date, end_date} = req.body
+        const {name, apply, limit, value, message, Activation_date, end_date} = req.body
         
-        const newPromotion = new Promotion({name, apply, value, message, Activation_date, end_date})
+        const newPromotion = new Promotion({name, apply, limit, value, message, Activation_date, end_date})
         await newPromotion.save()
         return res.json(newPromotion)
     } catch (error) {

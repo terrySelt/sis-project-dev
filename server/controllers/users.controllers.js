@@ -91,7 +91,8 @@ export const updateUser = async (req, res) => {
             age: req.body.age,
             oldpassword: req.body.oldpassword,
             newpassword: req.body.newpassword,
-            confirmpassword: req.body.confirmpassword
+            confirmpassword: req.body.confirmpassword,
+            //accumulated_points:req.body.accumulated_points
         } 
         
         if(body.oldpassword){

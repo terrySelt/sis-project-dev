@@ -1,6 +1,4 @@
 import Menu from '../models/Menu.js'
-import category from '../models/Category.js'
-
 import {uploadImage, deleteImage} from '../libs/cloudinary.js'
 import fs from 'fs-extra'
 
